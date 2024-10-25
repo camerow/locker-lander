@@ -6,8 +6,7 @@ import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://camerow.github.io",
-  base: "/",
+  site: "https://camerow.github.io/locker-lander",
   integrations: [
     react(), 
     tailwind({
