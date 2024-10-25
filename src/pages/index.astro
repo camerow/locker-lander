@@ -1,70 +1,51 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import '@/styles/globals.css';
+import Layout from "../layouts/Layout.astro";
+import "@/styles/globals.css";
 
-import { buttonVariants } from "@/components/ui/button";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
-import { AvatarComponent } from "../components/Avatar.tsx";
-import Footer from '@/components/Footer.astro';
-
+import Footer from "@/components/Footer.astro";
 ---
 
-<Layout title="Welcome to Astro x Shadcn Starter">
-  <main class="container mx-auto px-4 py-16 max-w-4xl">
-    <h1 class="text-5xl font-extrabold text-center mb-8 text-black-50">
-      Astro x Shadcn <span class="text-3xl block mt-2 font-normal">Starter Template</span>
-    </h1>
-    
-    <Card className="mb-12 shadow-lg">
-      <CardHeader>
-        <CardTitle>Getting Started</CardTitle>
-        <CardDescription>Your new project is ready to go!</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <p class="mb-4">This starter template includes:</p>
-        <ul class="grid grid-cols-2 gap-4">
-          <li>🚀 Astro</li>
-		  <li>🎨 Shadcn UI</li>
-		  <li>📦 Tailwind CSS</li>
-		  <li>🔥 React</li>
-        </ul>
-      </CardContent>
-      <CardFooter className="flex flex-col sm:flex-row justify-center sm:space-x-4 space-y-4 sm:space-y-0">
-        <a href="https://ui.shadcn.com/" class={`inline-block px-4 py-2 text-lg font-medium text-white bg-black-100 rounded-lg hover:bg-slate transition ${buttonVariants({ size: 'lg' })}`}>
-          Explore Shadcn Documentation
-        </a>
-        <a href="https://astro.build/docs" class={`inline-block px-4 py-2 text-lg font-medium text-white bg-black-100 rounded-lg hover:bg-slate transition ${buttonVariants({ size: 'lg' })}`}>
-          Explore Astro Documentation
-        </a>
-        <a href="https://github.com/dansholds/astro-shadcn-starter" class={`inline-block px-4 py-2 text-lg font-medium text-white bg-black-100 rounded-lg hover:bg-slate transition ${buttonVariants({ size: 'lg' })}`}>
-          View GitHub Repository
-        </a>
-      </CardFooter>
-    </Card>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const container = document.getElementsByTagName("body")[0];
+    const image = document.getElementById("animated-image");
 
-    <div class="grid sm:grid-cols-2 gap-6">
-      <Card className="shadow-md hover:shadow-xl transition-shadow">
-        <CardHeader>
-          <CardTitle>
-			<AvatarComponent client:load src="https://github.com/withastro.png" alt="Astro" fallbackText="Astro"/>
-				Astro
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          Build faster websites with less client-side JavaScript.
-        </CardContent>
-      </Card>
-      <Card className="shadow-md hover:shadow-xl transition-shadow">
-        <CardHeader>
-          <CardTitle>
-			<AvatarComponent client:load src="https://github.com/shadcn.png" alt="Shadcn" fallbackText="Shadcn"/>
-            Shadcn UI
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          Beautifully designed components built with Radix UI and Tailwind CSS.
-        </CardContent>
-      </Card>
+    if (container && image) {
+      container.addEventListener("mousemove", (e) => {
+        const { left, top, width, height } = container.getBoundingClientRect();
+
+        const x = (e.clientX - left) / width;
+        const y = (e.clientY - top) / height;
+
+        const rotateX = y * 5; // Adjust for more or less rotation
+        const rotateY = -x * 5; // Adjust for more or less rotation
+        const moveX = x * 30; // Adjust for more or less movement
+        const moveY = y * 30; // Adjust for more or less movement
+
+        image.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translate(${moveX}px, ${moveY}px)`;
+        image.style.transition = "transform 0.3s ease-out";
+      });
+
+      container.addEventListener("mouseleave", () => {
+        image.style.transform =
+          "perspective(1000px) rotateX(0deg) rotateY(0deg)";
+      });
+    }
+  });
+</script>
+<Layout title="Welcome to Astro x Shadcn Starter">
+  <main class="container mx-auto px-4 py-16 max-w-4xl" id="main-content">
+    <h1 class="text-5xl font-extrabold text-center mb-8 text-slate-50">
+      someguy.locker
+      <span class="text-3xl block mt-2 font- text-slate-400"></span>
+    </h1>
+    <div class="relative w-2/3 mx-auto">
+      <img
+        src="/spaceman.png"
+        alt="someguy"
+        class="w-full transition-transform duration-300 ease-out"
+        id="animated-image"
+      />
     </div>
   </main>
   <Footer />
