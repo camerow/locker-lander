@@ -6,7 +6,7 @@ import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://someguy.locker",
+  site: "http://someguy.locker",
   integrations: [
     react(), 
     tailwind({
